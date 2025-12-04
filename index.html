@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Trackr — Anime & Manga Tracker</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1>Trackr</h1>
+    <p class="tag">Search • Track • Organize — powered by AniList</p>
+  </header>
+
+  <main class="container">
+    <section class="controls">
+      <input id="searchInput" placeholder="Search anime or manga..." />
+      <select id="mediaType">
+        <option value="ANIME">Anime</option>
+        <option value="MANGA">Manga</option>
+      </select>
+      <select id="sortBy">
+        <option value="POPULARITY_DESC">Most popular</option>
+        <option value="SCORE_DESC">Highest score</option>
+        <option value="TRENDING_DESC">Trending</option>
+        <option value="ID_DESC">Newest</option>
+      </select>
+      <button id="searchBtn">Search</button>
+
+      <!-- Custom Entry Button -->
+      <button id="customEntryBtn" class="accent-btn">+ Add Custom Entry</button>
+    </section>
+
+    <section class="results" id="results"></section>
+
+    <nav class="pagination" id="pagination">
+      <button id="prevPage" disabled>‹ Prev</button>
+      <span id="pageInfo">Page 1</span>
+      <button id="nextPage" disabled>Next ›</button>
+    </nav>
+
+    <section class="mylist">
+      <h2>My List</h2>
+      <ul id="myList"></ul>
+    </section>
+  </main>
+
+  <!-- API DETAILS MODAL -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-dialog">
+      <header class="modal-header">
+        <h3 id="modalTitle"></h3>
+        <button id="closeModal">✕</button>
+      </header>
+      <div class="modal-body" id="modalBody"></div>
+      <footer class="modal-footer">
+        <label>Status</label>
+        <select id="statusSelect">
+          <option value="">Add to list...</option>
+          <option value="CURRENT">Watching / Reading</option>
+          <option value="COMPLETED">Completed</option>
+          <option value="PLANNING">Plan to watch  / Read</option>
+          <option value="DROPPED">Dropped</option>
+        </select>
+        <button id="saveStatus">Save</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- CUSTOM ENTRY MODAL -->
+  <div id="customModal" class="modal" aria-hidden="true">
+    <div class="modal-dialog">
+      <header class="modal-header">
+        <h3>Create Custom Entry</h3>
+        <button id="closeCustomModal">✕</button>
+      </header>
+
+      <div class="modal-body">
+        <label>Title</label>
+        <input id="customTitle" />
+
+        <label>Type</label>
+        <select id="customType">
+          <option value="ANIME">Anime</option>
+          <option value="MANGA">Manga</option>
+        </select>
+
+        <label>Image URL (optional)</label>
+        <input id="customImg" />
+
+        <label>Status</label>
+        <select id="customStatus">
+          <option value="CURRENT">Watching / Reading</option>
+          <option value="COMPLETED">Completed</option>
+          <option value="PLANNING">Plan to watch  / Read</option>
+          <option value="DROPPED">Dropped</option>
+        </select>
+
+        <label>Notes</label>
+        <textarea id="customNotes" rows="4"></textarea>
+      </div>
+
+      <footer class="modal-footer">
+        <button id="saveCustomEntry">Save Entry</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- TEMPLATE FOR SEARCH CARDS -->
+  <template id="cardTpl">
+    <article class="card">
+      <img class="cover" alt="">
+      <div class="card-body">
+        <h4 class="card-title"></h4>
+        <p class="sub">Genres: <span class="genres"></span></p>
+        <p class="score">Score: <span></span></p>
+        <div class="card-actions">
+          <button class="viewBtn">View</button>
+          <button class="addBtn">+ My List</button>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <script src="script.js" type="module"></script>
+</body>
+</html>
